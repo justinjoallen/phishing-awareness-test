@@ -1,3 +1,4 @@
+// app.js
 document.addEventListener("DOMContentLoaded", () => {
   const quizForm = document.getElementById("quizForm");
   const quizFeedback = document.getElementById("quizFeedback");
@@ -6,20 +7,36 @@ document.addEventListener("DOMContentLoaded", () => {
   if (quizForm) {
     quizForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      const correct = { q1:"yes", q2:"no", q3:"yes", q4:"no", q5:"yes" };
+
+      // Define correct answers: some are red flags (yes), some are not (no)
+      const correct = {
+        q1: "yes", // Salary changes mid-description → red flag
+        q2: "no",  // Clear hourly rate listed → not a red flag
+        q3: "yes", // Off-platform application link → red flag
+        q4: "no",  // Verified contact info → not a red flag
+        q5: "yes"  // Responsibilities vague → red flag
+      };
+
       let score = 0;
       const formData = new FormData(quizForm);
 
+      // Check each answer
       Object.keys(correct).forEach(q => {
-        if (formData.get(q) === correct[q]) score++;
+        if (formData.get(q) === correct[q]) {
+          score++;
+        }
       });
 
+      // Show feedback
       quizFeedback.textContent = `You scored ${score}/5. ${
         score >= 4 ? "Passing score!" : "Review the lesson and try again."
       }`;
 
+      // Reveal attestation + badge if passing
       if (score >= 4) {
         attestation.style.display = "block";
+      } else {
+        attestation.style.display = "none";
       }
     });
   }

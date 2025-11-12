@@ -12,13 +12,6 @@ body {
   color:var(--ink);
 }
 
-.brand {
-  background:var(--crimson);
-  color:white;
-  padding:20px;
-  text-align:center;
-}
-
 .card {
   background:white;
   border-radius:8px;
@@ -46,18 +39,7 @@ body {
 .list { margin:12px 0; padding-left:20px; }
 .list li { margin:6px 0; }
 
-.email {
-  border:1px dashed #bbb;
-  padding:12px;
-  border-radius:8px;
-  background:#fffdf8;
-}
-
-.footer {
-  text-align:center;
-  padding:12px;
-  color:#555;
-}
-
 .feedback { font-weight:600; margin-top:8px; }
 .actions { margin-top:12px; }
+
+img { max-width:100%; }
