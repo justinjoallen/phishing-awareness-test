@@ -51,3 +51,7 @@ img { max-width:100%; }
 .logo {
   max-height: 80px;
 }
+.logo {
+  width: 20%;   /* scales relative to page width */
+  height: auto;
+}
