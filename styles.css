@@ -43,3 +43,11 @@ body {
 .actions { margin-top:12px; }
 
 img { max-width:100%; }
+.header {
+  background: var(--crimson);
+  padding: 10px;
+  text-align: center;
+}
+.logo {
+  max-height: 80px;
+}
