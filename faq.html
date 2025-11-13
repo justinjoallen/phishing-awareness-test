@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Handshake Scam Awareness – Miami University Students</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --main-red: #B61E2E;
+            --main-red-light: #D64550;
+            --text-dark: #1F2937;
+            --text-muted: #6B7280;
+            --bg-light: #F3F4F6;
+            --card-bg: #ffffff;
+            --border: #E5E7EB;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 40px 16px;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .page-wrapper {
+            max-width: 1100px;
+            margin: auto;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .animated-card {
+            opacity: 0;
+            animation: slideUp 0.6s ease-out forwards;
+        }
+
+        /* Header card */
+        .header-card {
+            background: var(--card-bg);
+            border-radius: 18px;
+            border: 1px solid var(--border);
+            padding: 24px 24px 20px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            margin-bottom: 26px;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 14px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 14px;
+            text-align: center;
+        }
+
+        .header-text h1 {
+            margin: 0 0 4px;
+            color: var(--main-red);
+            font-size: 1.9rem;
+        }
+
+        .header-text .subline {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .campus-line {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 3px;
+        }
+
+        .header-card > p {
+            color: var(--text-muted);
+            margin: 0 0 14px;
+            font-size: 0.9rem;
+        }
+
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            background: var(--bg-light);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        .badge.accent {
+            background: var(--main-red-light);
+            color: white;
+            border: none;
+        }
+
+        /* Layout */
+        .faq-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 22px;
+        }
+
+        @media (max-width: 850px) {
+            .faq-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .faq-section-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.1rem;
+            margin: 0 0 8px;
+        }
+
+        .faq-card {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            padding: 18px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+        }
+
+        /* FAQ items */
+        details {
+            background: white;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 12px 16px;
+            transition: 0.2s ease;
+        }
+
+        details + details {
+            margin-top: 10px;
+        }
+
+        details[open] {
+            border-color: var(--main-red-light);
+            background: #fff6f6;
+            box-shadow: 0 4px 12px rgba(182, 30, 46, 0.15);
+        }
+
+        summary {
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        summary::-webkit-details-marker { display: none; }
+
+        .faq-question {
+            font-weight: 600;
+            color: var(--main-red);
+            font-size: 0.95rem;
+        }
+
+        .faq-tagline {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .chevron {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            transition: 0.2s;
+        }
+
+        details[open] .chevron {
+            transform: rotate(90deg);
+            color: var(--main-red);
+        }
+
+        .faq-answer {
+            margin-top: 10px;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .resource-label {
+            margin-top: 10px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .resource-links {
+            display: flex;
+            flex-direction: column;
+            margin-top: 6px;
+            gap: 4px;
+        }
+
+        .resource-links a {
+            color: var(--main-red);
+            font-size: 0.85rem;
+            text-decoration: none;
+            border-bottom: 1px dashed transparent;
+            transition: 0.2s;
+        }
+
+        .resource-links a:hover {
+            border-bottom: 1px dashed var(--main-red-light);
+            color: var(--main-red-light);
+        }
+
+        /* Sidebar */
+        .sidebar-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+        }
+
+        .sidebar-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--main-red);
+            margin-bottom: 8px;
+        }
+
+        .sidebar-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .pill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 12px 0;
+        }
+
+        .pill {
+            padding: 4px 8px;
+            border-radius: 50px;
+            background: var(--bg-light);
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            font-size: 0.75rem;
+        }
+
+        .pill.red {
+            background: var(--main-red-light);
+            color: white;
+            border: none;
+        }
+
+        .help-link {
+            margin-top: 8px;
+            font-size: 0.85rem;
+        }
+
+        .help-link a {
+            color: var(--main-red);
+            text-decoration: underline;
+        }
+
+        .scenario-box {
+            background: #fff0f0;
+            border-radius: 12px;
+            border: 1px solid #fecaca;
+            padding: 10px 12px;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .scenario-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--main-red);
+            letter-spacing: 0.08rem;
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+    <header class="header-card animated-card" style="animation-delay: 0.02s;">
+        <div class="header-top">
+            <div class="header-text">
+                <h1>Handshake Scam Awareness FAQ</h1>
+                <div class="subline">For Miami University students using Handshake for jobs and internships.</div>
+                <div class="campus-line">Applies to Oxford, Hamilton, Middletown campuses.</div>
+            </div>
+        </div>
+
+        <p>
+            Use this page to quickly check if a job posting or message in Handshake or email might be a scam. 
+            Click any question to expand, and use the links to Miami and Handshake resources to learn more or report issues.
+        </p>
+
+        <div class="badge-row">
+            <span class="badge accent">Miami University</span>
+            <span class="badge">Oxford & Regionals</span>
+            <span class="badge">Handshake Safety</span>
+            <span class="badge">Student Jobs & Internships</span>
+        </div>
+    </header>
+
+    <main class="faq-layout">
+
+        <!-- LEFT SIDE CONTENT -->
+        <section>
+
+            <!-- QUICK SCENARIO -->
+            <div class="scenario-box animated-card" style="animation-delay: 0.05s;">
+                <div class="scenario-label">Quick Scenario</div>
+                You get an email saying you were “selected for a paid remote internship” that wants you 
+                to reply with your personal email and phone number, and they say they’ll send you a check 
+                for supplies. Before you answer, scroll through this FAQ and see how many red flags you notice.
+            </div>
+
+            <!-- PRACTICAL QUESTIONS -->
+            <div class="faq-section-title">Getting started with Handshake</div>
+            <div class="faq-card animated-card" style="animation-delay: 0.08s;">
+
+                <!-- Q1 -->
+                <details>
+                    <summary>
+                        <div>
+                            <div class="faq-question">How do I log in to Handshake as a Miami student?</div>
+                            <span class="faq-tagline">One account for Oxford and all Regional campuses.</span>
+                        </div>
+                        <div class="chevron">&gt;</div>
+                    </summary>
+
+                    <div class="faq-answer">
+                        Miami uses one Handshake system for all campuses. Sign in with your Miami email and password, 
+                        then complete your profile so employers know you’re a Miami student. You can search for jobs 
+                        and internships for Oxford and the Regionals in the same account.
+                    </div>
+
+                    <div class="resource-label">Miami & Handshake links</div>
+                    <div class="resource-links">
+                        <a href="https://miamioh.joinhandshake.com/login" target="_blank">Log in to Handshake (Miami portal)</a>
+                        <a href="https://miamioh.edu/centers-institutes/career-center/connect/resources/handshake.html" target="_blank">
+                            Oxford – Career Center Handshake info
+                        </a>
+                        <a href="https://miamioh.edu/regionals/student-resources/career-services-professional-development/student-handshake.html" target="_blank">
+                            Regionals – Student Handshake info
+                        </a>
+                    </div>
+                </details>
+
+                <!-- Q2 -->
+                <details>
+                    <summary>
+                        <div>
+                            <div class="faq-question">How can I tell if a Handshake job posting is legit?</div>
+                            <span class="faq-tagline">Quick checks before you apply or accept.</span>
+                        </div>
+                        <div class="chevron">&gt;</div>
+                    </summary>
+
+                    <div class="faq-answer">
+                        Legit postings list a real company name, link to a professional website, and use an official 
+                        company email address (for example <code>@company.com</code>). Job descriptions should be clear, 
+                        specific, and similar to what you’d see on the company’s own site. If the salary looks way 
+                        higher than normal or the duties are super vague, slow down and double-check.
+                    </div>
+
+                    <div class="resource-label">Handshake resources</div>
+                    <div class="resource-links">
+                        <a href="https://support.joinhandshake.com/hc/en-us/articles/115008792627-Safety-Best-Practices-for-Job-Searches" target="_blank">
+                            Safety – Best practices for job searches
+                        </a>
+                        <a href="https://support.joinhandshake.com/hc/en-us/articles/8721830375063-Understanding-how-Employers-are-Validated-on-Handshake" target="_blank">
+                            How employers are validated on Handshake
+                        </a>
+                    </div>
+                </details>
+
+                <!-- Q3 -->
+                <details>
+                    <summary>
+                        <div>
+                            <div class="faq-question">Why do scammers target Miami students on Handshake and email?</div>
+                            <span class="faq-tagline">Why you’re a target, especially during the semester.</span>
+                        </div>
+                        <div class="chevron">&gt;</div>
+                    </summary>
+
+                    <div class="faq-answer">
+                        Students are busy, need experience, and may be looking for quick income. Scammers know that 
+                        and send fake internship offers, part-time jobs, or “on-campus opportunities” that look like 
+                        they’re from real Miami offices or professors. Some recent scams have even used real staff names 
+                        in fake internship emails.
+                    </div>
+
+                    <div class="resource-label">Miami scam alerts</div>
+                    <div class="resource-links">
+                        <a href="https://miamioh.edu/it-services/news-media/2025/04/student-internship-scam.html" target="_blank">
+                            Student internship scam warning (IT Services)
+                        </a>
+                        <a href="https://miamioh.edu/it-services/news-media/2025/05/the-most-recent-phishing-scams-at-miami.html" target="_blank">
+                            Recent phishing scams at Miami
+                        </a>
+                    </div>
+                </details>
+            </div>
+
+            <!-- SAFETY & RED FLAGS -->
+            <div class="faq-section-title">Spotting red flags</div>
+            <div class="faq-card animated-card" style="animation-delay: 0.14s;">
+
+                <!-- Q4 -->
+                <details>
+                    <summary>
+                        <div>
+                            <div class="faq-question">Is it normal for an employer to contact me outside of Handshake?</div>
+                            <span class="faq-tagline">Email, text, and moving off the platform.</span>
+                        </div>
+                        <div class="chevron">&gt;</div>
+                    </summary>
+
+                    <div class="faq-answer">
+                        Yes, but they should still look professional. It’s normal to get follow-up emails about an 
+                        interview or application, especially from a company domain. Be careful when a “recruiter” 
+                        immediately moves to personal email, text, or messaging apps and starts asking for personal 
+                        information or money.
+                    </div>
+
+                    <div class="resource-label">Handshake resources</div>
+                    <div class="resource-links">
+                        <a href="https://support.joinhandshake.com/hc/en-us/articles/34476362391831-How-to-Spot-and-Report-Scams-on-Handshake" target="_blank">
+                            How to spot & report scams on Handshake
+                        </a>
+                    </div>
+                </details>
+
+                <!-- Q5 -->
+                <details>
+                    <summary>
+                        <div>
+                            <div class="faq-question">What are the biggest red flags in fake Handshake job offers?</div>
+                            <span class="faq-tagline">Things that should make you slow down.</span>
+                        </div>
+                        <div class="chevron">&gt;</div>
+                    </summary>
+
+                    <div class="faq-answer">
+                        Watch for:
+                        <ul>
+                            <li>Instant “you’re hired” messages with no interview.</li>
+                            <li>Very high pay for very simple work.</li>
+                            <li>Requests for bank info, Zelle, or gift cards.</li>
+                            <li>Personal email accounts instead of company addresses.</li>
+                            <li>Lots of spelling mistakes or copy-paste looking messages.</li>
+                        </ul>
+                        If a job sounds “effortless” but pays like a full-time role, that’s a bad sign.
+                    </div>
+
+                    <div class="resource-label">Handshake resources</div>
+                    <div class="resource-links">
+                        <a href="https://support.joinhandshake.com/hc/en-us/articles/115008792627-Safety-Best-Practices-for-Job-Searches" target="_blank">
+                            Safety – Job search best practices
+                        </a>
+                        <a href="https://support.joinhandshake.com/hc/en-us/articles/115008792387-Safety-Fraudulent-Employers" target="_blank">
+                            Safety – Fraudulent employers
+                        </a>
+                    </div>
+                </details>
+
+                <!-- Q6 -->
+                <details>
+                    <summary>
+                        <div>
+                            <div class="faq-question">Should I ever pay for training, equipment, or software?</div>
+                            <span class="faq-tagline">When “we’ll reimburse you” is a bad sign.</span>
+                        </div>
+                        <div class="chevron">&gt;</div>
+                    </summary>
+
+                    <div class="faq-answer">
+                        In most student jobs and internships, no. Legit employers don’t ask you to buy gift cards, 
+                        cash checks, or send money as part of getting hired. If they want you to front money for 
+                        supplies or “setup fees” and promise to reimburse you later, treat it like a scam until a 
+                        Miami career advisor helps you verify it.
+                    </div>
+
+                    <div class="resource-label">Handshake resources</div>
+                    <div class="resource-links">
+                        <a href="https://support.joinhandshake.com/hc/en-us/articles/34476362391831-How-to-Spot-and-Report-Scams-on-Handshake" target="_blank">
+                            How to spot & report scams on Handshake
+                        </a>
+                    </div>
+                </details>
+            </div>
+
+            <!-- IF SOMETHING FEELS OFF -->
+            <div class="faq-section-title">If something feels off</div>
+            <div class="faq-card animated-card" style="animation-delay: 0.20s;">
+
+                <!-- Q7 -->
+                <details>
+                    <summary>
+                        <div>
+                            <div class="faq-question">What should I do if I see a sketchy job on Handshake?</div>
+                            <span class="faq-tagline">How to report it without overreacting.</span>
+                        </div>
+                        <div class="chevron">&gt;</div>
+                    </summary>
+
+                    <div class="faq-answer">
+                        Don’t apply just to “see what happens.” Instead:
+                        <ul>
+                            <li>Use Handshake’s tools to flag or report the job or employer.</li>
+                            <li>Take screenshots or save the text.</li>
+                            <li>Ask a Miami career advisor or staff member to look it over.</li>
+                        </ul>
+                        It’s better to get a second opinion than risk your money or identity.
+                    </div>
+
+                    <div class="resource-label">Report & learn more</div>
+                    <div class="resource-links">
+                        <a href="https://support.joinhandshake.com/hc/en-us/articles/34476362391831-How-to-Spot-and-Report-Scams-on-Handshake" target="_blank">
+                            How to spot & report scams on Handshake
+                        </a>
+                        <a href="https://support.joinhandshake.com/hc/en-us/articles/115008792627-Safety-Best-Practices-for-Job-Searches" target="_blank">
+                            Safety – Best practices for job searches
+                        </a>
+                    </div>
+                </details>
+
+                <!-- Q8 -->
+                <details>
+                    <summary>
+                        <div>
+                            <div class="faq-question">Who can I talk to on the Oxford campus if I’m unsure about a job?</div>
+                            <span class="faq-tagline">Using the Career Center as a safety check.</span>
+                        </div>
+                        <div class="chevron">&gt;</div>
+                    </summary>
+
+                    <div class="faq-answer">
+                        On the Oxford campus, the Center for Career Exploration & Success can help review 
+                        job posts, emails, and offers. You can schedule an appointment through Handshake 
+                        and bring screenshots or message history so they can walk through it with you.
+                    </div>
+
+                    <div class="resource-label">Oxford resources</div>
+                    <div class="resource-links">
+                        <a href="https://miamioh.edu/centers-institutes/career-center/connect/resources/handshake.html" target="_blank">
+                            Oxford – Career Center Handshake page
+                        </a>
+                        <a href="https://miamioh.joinhandshake.com/login" target="_blank">
+                            Log in to Handshake to schedule an appointment
+                        </a>
+                    </div>
+                </details>
+
+                <!-- Q9 -->
+                <details>
+                    <summary>
+                        <div>
+                            <div class="faq-question">Who can I talk to on the Regional campuses (Hamilton, Middletown)?</div>
+                            <span class="faq-tagline">Career help specific to Regionals.</span>
+                        </div>
+                        <div class="chevron">&gt;</div>
+                    </summary>
+
+                    <div class="faq-answer">
+                        Miami Regionals students can work with Career Services & Professional Development 
+                        for job and internship questions, including possible scams. You can explore resources 
+                        online, use Handshake, or contact the offices on Hamilton and Middletown.
+                    </div>
+
+                    <div class="resource-label">Regionals resources</div>
+                    <div class="resource-links">
+                        <a href="https://miamioh.edu/regionals/student-resources/career-services-professional-development/job-internship-prep/index.html#handshake" target="_blank">
+                            Regionals – Job & internship prep (Handshake section)
+                        </a>
+                        <a href="https://miamioh.edu/regionals/student-resources/career-services-professional-development/index.html" target="_blank">
+                            Career Services & Professional Development (Hamilton & Middletown)
+                        </a>
+                    </div>
+                </details>
+
+                <!-- Q10 -->
+                <details>
+                    <summary>
+                        <div>
+                            <div class="faq-question">What if I already clicked a link or shared personal information?</div>
+                            <span class="faq-tagline">Next steps if things might be serious.</span>
+                        </div>
+                        <div class="chevron">&gt;</div>
+                    </summary>
+
+                    <div class="faq-answer">
+                        Don’t panic, but act quickly:
+                        <ul>
+                            <li>Change any passwords you may have entered.</li>
+                            <li>If you shared bank details, contact your bank right away.</li>
+                            <li>Forward suspicious messages to <strong>InfoSec@MiamiOH.edu</strong>.</li>
+                            <li>Call IT Help if you think you clicked a malicious link on a Miami account.</li>
+                        </ul>
+                        The sooner you reach out, the easier it is for Miami staff to help protect your accounts.
+                    </div>
+
+                    <div class="resource-label">Miami help pages</div>
+                    <div class="resource-links">
+                        <a href="https://miamioh.edu/global-initiatives/international-student-scholar-services/resources/money-matters/scams-and-frauds.html" target="_blank">
+                            Scams & frauds – what to do (includes InfoSec contact)
+                        </a>
+                        <a href="https://miamioh.edu/it-services/news-media/2025/05/the-most-recent-phishing-scams-at-miami.html" target="_blank">
+                            Recent phishing scams at Miami – IT Services
+                        </a>
+                    </div>
+                </details>
+            </div>
+
+        </section>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar-card animated-card" style="animation-delay: 0.10s;">
+            <div class="sidebar-title">3-Second Scam Check</div>
+            <div class="sidebar-text">Before responding to any job posting, email, or text, ask yourself:</div>
+
+            <div class="pill-list">
+                <span class="pill red">Too good to be true?</span>
+                <span class="pill">No interview?</span>
+                <span class="pill">Wants money?</span>
+                <span class="pill">Personal email?</span>
+                <span class="pill">Weird grammar?</span>
+                <span class="pill">“Act now” pressure?</span>
+            </div>
+
+            <div class="sidebar-text">
+                If you say “yes” to any of these, pause. Don’t send money or personal information until you 
+                check the job against the resources in this FAQ or talk with a Miami staff member.
+            </div>
+
+            <div class="sidebar-title" style="margin-top: 18px;">Where to get help at Miami</div>
+            <div class="sidebar-text">
+                <strong>Oxford (Center for Career Exploration & Success)</strong><br>
+                Use Handshake to find events and schedule advising about jobs and internships.
+            </div>
+            <div class="sidebar-text" style="margin-top: 8px;">
+                <strong>Regionals (Career Services & Professional Development)</strong><br>
+                Hamilton – Rentschler Hall 120<br>
+                Middletown – Johnston Hall 105<br>
+                Email: <em>MiamiRegionalsCareer@MiamiOH.edu</em>
+            </div>
+
+            <div class="sidebar-text" style="margin-top: 10px;">
+                <strong>IT / Security</strong><br>
+                Forward suspicious messages to <em>InfoSec@MiamiOH.edu</em> or contact IT Help if you think 
+                your account or device might be affected.
+            </div>
+
+            <div class="help-link" style="margin-top: 10px;">
+                Access Handshake directly at  
+                <a href="https://miamioh.joinhandshake.com/login" target="_blank">miamioh.joinhandshake.com</a>.
+            </div>
+        </aside>
+
+    </main>
+</div>
+
+</body>
+</html>
