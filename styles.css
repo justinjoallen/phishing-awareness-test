@@ -55,3 +55,60 @@ img { max-width:100%; }
   width: 20%;   /* scales relative to page width */
   height: auto;
 }
+/* Accordion styles */
+.accordion {
+  cursor: pointer;
+  padding: 12px;
+  margin: 6px 0;
+  background: var(--stone);
+  border: 1px solid var(--crimson);
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+.accordion:hover {
+  background: #f0e6e8; /* subtle hover tint */
+}
+.panel {
+  display: none;
+  padding: 10px 14px;
+  background: #fafafa;
+  border-left: 3px solid var(--crimson);
+  margin-bottom: 8px;
+  border-radius: 4px;
+}
+
+/* Progress bar */
+.progress-container {
+  width: 100%;
+  background: #ddd;
+  border-radius: 10px;
+  height: 20px;
+  margin: 12px 0;
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--crimson);
+  text-align: center;
+  color: white;
+  font-size: 12px;
+  line-height: 20px;
+  transition: width 0.4s ease;
+}
+
+/* Disabled quiz button */
+.btn.disabled {
+  background: #ccc;
+  color: #666;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* Optional: active accordion state */
+.accordion.active {
+  background: var(--crimson);
+  color: white;
+}
+
