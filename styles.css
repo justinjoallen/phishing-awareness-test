@@ -112,3 +112,51 @@ img { max-width:100%; }
   color: white;
 }
 
+.site-title {
+  color: white;
+  margin: 0.5rem 0;
+  font-family: Georgia, serif;
+}
+
+.tagline {
+  color: white;
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.nav a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+.nav a:hover {
+  text-decoration: underline;
+}
+
+.hero {
+  background: var(--stone);
+  padding: 2rem;
+  text-align: center;
+}
+.hero h2 {
+  color: var(--crimson);
+  margin-bottom: 0.5rem;
+}
+.hero p {
+  max-width: 600px;
+  margin: 0 auto 1rem;
+}
+
+.footer {
+  background: var(--crimson);
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin-top: 20px;
+}
+
