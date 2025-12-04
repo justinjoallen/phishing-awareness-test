@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin — Login</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <img src="Miami-University-Logo.png" 
+         alt="Miami University Logo" class="logo" />
+    <h1 class="site-title">Admin Login</h1>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="lesson.html">Lesson</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="phishing.html">Simulation</a>
+      <a href="admin.html">Admin</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+  </header>
+
+  <main class="card login-card">
+    <div class="guard">
+      <strong>Demo only:</strong> 
+    </div>
+
+    <form id="adminLoginForm">
+      <div class="form-row">
+        <label>Username</label>
+        <input id="adminUser" type="text" placeholder="admin" required />
+      </div>
+      <div class="form-row">
+        <label>Password</label>
+        <input id="adminPass" type="password" placeholder="redhawks" required />
+      </div>
+      <div class="actions">
+        <button class="btn primary" type="submit">Log in</button>
+        <button class="btn" type="button" id="logoutBtn">Log out</button>
+      </div>
+      <p id="adminMsg" class="feedback"></p>
+    </form>
+
+    <div class="actions">
+      <a class="btn" href="index.html">🏠 Home</a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Miami University • Career Services & IT Security</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
