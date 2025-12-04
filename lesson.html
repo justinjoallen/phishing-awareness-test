@@ -2,90 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Lesson – Spotting Red Flags</title>
+  <title>Lesson — Spotting Red Flags</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <main class="card">
-    <h1>Lesson: Spotting Fake Job Postings</h1>
-    <p>
-      Scammers often disguise themselves as legitimate employers. 
-      By learning to recognize the signs, you can protect yourself and your peers.
-    </p>
+  <!-- Header -->
+  <header class="header">
+    <img src="Miami-University-Logo.png" 
+         alt="Miami University Logo" class="logo" />
+    <h1 class="site-title">Lesson: Spotting Red Flags</h1>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="lesson.html">Lesson</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="phishing.html">Simulation</a>
+      <a href="admin.html">Admin</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+  </header>
 
-    <!-- Progress tracker -->
-    <h2>Progress</h2>
+  <!-- Main content -->
+  <main class="card">
+    <h2>Common Scam Tactics</h2>
+    <p>Expand each section to learn what to look for before you apply.</p>
+
+    <!-- Accordion sections -->
+    <div class="accordion">Sender domain not Miami or Handshake</div>
+    <div class="panel">Emails should come from official @miamioh.edu or verified Handshake domains.</div>
+
+    <div class="accordion">Too good to be true offers</div>
+    <div class="panel">Unrealistic pay with little effort is a classic red flag.</div>
+
+    <div class="accordion">Off‑platform application links</div>
+    <div class="panel">Handshake is the official channel. Off‑platform links are suspicious.</div>
+
+    <div class="accordion">Vague responsibilities</div>
+    <div class="panel">Legitimate postings list clear duties and qualifications.</div>
+
+    <!-- Progress bar -->
     <div class="progress-container">
       <div id="progress-bar" class="progress-bar">0%</div>
     </div>
 
-    <h2>Key Red Flags</h2>
+    <!-- Quick self-check moved here -->
+    <h2>Quick Self‑Check</h2>
+    <p>Imagine an email says: “Apply now, limited spots, earn $2000/week from home.”  
+    Which red flag applies?</p>
+    <select id="redFlagSelect">
+      <option value="">-- Choose an answer --</option>
+      <option value="true">Too good to be true</option>
+      <option value="urgency">Urgency tactics</option>
+      <option value="off">Off‑platform links</option>
+    </select>
+    <button class="btn" id="checkBtn">Check Answer</button>
+    <p id="feedback" class="feedback"></p>
 
-    <!-- Accordion style red flags -->
-    <div class="accordion">⚠️ Too good to be true</div>
-    <div class="panel">Unrealistic pay or benefits with little effort required.</div>
-
-    <div class="accordion">⚠️ Vague descriptions</div>
-    <div class="panel">No clear responsibilities or qualifications listed.</div>
-
-    <div class="accordion">⚠️ Off‑platform links</div>
-    <div class="panel">Requests to apply outside of Handshake or official channels.</div>
-
-    <div class="accordion">⚠️ Urgency tactics</div>
-    <div class="panel">“Apply immediately” or “limited spots” pressure language.</div>
-
-    <div class="accordion">⚠️ Weak online presence</div>
-    <div class="panel">Employer lacks a verified website or contact information.</div>
-
-    <h2>Why It Matters</h2>
-    <p>
-      Falling for scams can expose your personal information, waste your time, 
-      and even put your finances at risk. Recognizing these red flags early 
-      ensures you stay safe and focus on legitimate opportunities.
-    </p>
-
+    <!-- Navigation -->
     <div class="actions">
-      <a id="quiz-btn" class="btn primary disabled" href="quiz.html">Proceed to Quiz</a>
-      <a class="btn" href="faq.html">📄 FAQ Website</a>
+      <a class="btn primary" href="quiz.html">📝 Take Quiz</a>
     </div>
   </main>
 
-  <script>
-    // Accordion interactivity + progress tracking
-    const acc = document.getElementsByClassName("accordion");
-    const progressBar = document.getElementById("progress-bar");
-    const quizBtn = document.getElementById("quiz-btn");
-    let openedFlags = new Set();
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 Miami University • Career Services & IT Security</p>
+  </footer>
 
-    for (let i = 0; i < acc.length; i++) {
-      acc[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        const panel = this.nextElementSibling;
-        const isOpen = panel.style.display === "block";
-        panel.style.display = isOpen ? "none" : "block";
-
-        // Track opened flags
-        if (!isOpen) {
-          openedFlags.add(i);
-        } else {
-          openedFlags.delete(i);
-        }
-
-        // Update progress bar
-        const total = acc.length;
-        const progress = Math.round((openedFlags.size / total) * 100);
-        progressBar.style.width = progress + "%";
-        progressBar.textContent = progress + "%";
-
-        // Unlock quiz button at 100%
-        if (progress === 100) {
-          quizBtn.classList.remove("disabled");
-        } else {
-          quizBtn.classList.add("disabled");
-        }
-      });
-    }
-  </script>
+  <!-- Shared JS -->
+  <script src="app.js"></script>
 </body>
 </html>
 
