@@ -2,58 +2,56 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Scam Awareness Training – Miami University</title>
+  <title>Admin — Login</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- Miami banner -->
   <header class="header">
-    <img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/7e/Miami_Redhawks_logo.svg/1200px-Miami_Redhawks_logo.svg.png" 
+    <img src="Miami-University-Logo.png" 
          alt="Miami University Logo" class="logo" />
-    <h1 class="site-title">Miami University Scam Awareness Training</h1>
-    <p class="tagline">Protecting Students • Building Safer Communities</p>
+    <h1 class="site-title">Admin Login</h1>
     <nav class="nav">
       <a href="index.html">Home</a>
       <a href="lesson.html">Lesson</a>
       <a href="quiz.html">Quiz</a>
+      <a href="phishing.html">Simulation</a>
+      <a href="admin.html">Admin</a>
       <a href="faq.html">FAQ</a>
     </nav>
   </header>
 
-  <!-- Hero section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h2>Stay Safe. Stay Informed.</h2>
-      <p>
-        Scammers target students with fake job postings and phishing emails. 
-        This training helps you spot red flags, respond safely, and connect with 
-        official Miami University support resources.
-      </p>
-      <a class="btn primary" href="lesson.html">📘 Begin Lesson</a>
+  <main class="card login-card">
+    <div class="guard">
+      <strong>Demo only:</strong> 
     </div>
-  </section>
 
-  <!-- Main card content -->
-  <main class="card">
-    <h2>What You’ll Learn</h2>
-    <ul class="list">
-      <li>Spotting common red flags in job postings</li>
-      <li>Responding safely to suspicious emails</li>
-      <li>Reporting scams through Handshake and Career Services</li>
-      <li>Accessing the Student Guide for ongoing support</li>
-    </ul>
+    <form id="adminLoginForm">
+      <div class="form-row">
+        <label>Username</label>
+        <input id="adminUser" type="text" placeholder="admin" required />
+      </div>
+      <div class="form-row">
+        <label>Password</label>
+        <input id="adminPass" type="password" placeholder="redhawks" required />
+      </div>
+      <div class="actions">
+        <button class="btn primary" type="submit">Log in</button>
+        <button class="btn" type="button" id="logoutBtn">Log out</button>
+      </div>
+      <p id="adminMsg" class="feedback"></p>
+    </form>
 
     <div class="actions">
-      <a class="btn primary" href="lesson.html">📘 Begin Lesson</a>
-      <a class="btn primary" href="quiz.html">📝 Take Quiz</a>
-      <a class="btn primary" href="faq.html">📄 FAQ Website</a>
+      <a class="btn" href="index.html">🏠 Home</a>
     </div>
   </main>
 
-  <!-- Footer -->
   <footer class="footer">
     <p>&copy; 2025 Miami University • Career Services & IT Security</p>
   </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
+
 
