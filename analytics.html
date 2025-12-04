@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin — Analytics Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <img src="Miami-University-Logo.png" 
+         alt="Miami University Logo" class="logo" />
+    <h1 class="site-title">Analytics Dashboard</h1>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="lesson.html">Lesson</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="phishing.html">Simulation</a>
+      <a href="admin.html">Admin</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+  </header>
+
+  <main class="card">
+    <h2>Sitewide metrics</h2>
+    <ul class="list">
+      <li>Total Lesson Views: <strong id="lessonViews">0</strong></li>
+      <li>Total Quiz Attempts: <strong id="quizAttempts">0</strong></li>
+      <li>Total Quiz Passes: <strong id="quizPasses">0</strong></li>
+      <li>Total Phishing Fails: <strong id="phishingFails">0</strong></li>
+    </ul>
+
+    <h2>Visualization</h2>
+    <canvas id="analyticsChart" width="800" height="320" style="max-width:100%; border:1px solid #eee; border-radius:8px;"></canvas>
+
+    <div class="actions">
+      <button class="btn" id="resetAnalytics">Reset Analytics</button>
+      <button class="btn primary" onclick="window.location.href='lesson.html'">Go to Lesson</button>
+      <button class="btn" onclick="window.location.href='quiz.html'">Go to Quiz</button>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Miami University • Career Services & IT Security</p>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    // Simple canvas bar chart without libraries
+    function drawChart() {
+      const canvas = document.getElementById("analyticsChart");
+      const ctx = canvas.getContext("2d");
+      const data = [
+        { label: "Lesson Views", value: parseInt(localStorage.getItem("lessonViews") || "0") },
+        { label: "Quiz Attempts", value: parseInt(localStorage.getItem("quizAttempts") || "0") },
+        { label: "Quiz Passes", value: parseInt(localStorage.getItem("quizPasses") || "0") },
+        { label: "Phishing Fails", value: parseInt(localStorage.getItem("phishingFails") || "0") },
+      ];
+      const maxVal = Math.max(1, ...data.map(d => d.value));
+      const padding = 40;
+      const chartW = canvas.width - padding * 2;
+      const chartH = canvas.height - padding * 2;
+      const barW = chartW / data.length * 0.6;
+      const gap = chartW / data.length * 0.4;
+
+      // Clear
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Axes
+      ctx.strokeStyle = "#888";
+      ctx.beginPath();
+      ctx.moveTo(padding, padding);
+      ctx.lineTo(padding, padding + chartH);
+      ctx.lineTo(padding + chartW, padding + chartH);
+      ctx.stroke();
+
+      // Bars
+      data.forEach((d, i) => {
+        const x = padding + i * (barW + gap) + gap/2;
+        const h = (d.value / maxVal) * (chartH - 20);
+        const y = padding + chartH - h;
+        ctx.fillStyle = "#9D2235"; // crimson
+        ctx.fillRect(x, y, barW, h);
+
+        // Labels
+        ctx.fillStyle = "#333";
+        ctx.font = "12px system-ui";
+        ctx.textAlign = "center";
+        ctx.fillText(d.label, x + barW/2, padding + chartH + 16);
+        ctx.fillText(String(d.value), x + barW/2, y - 6);
+      });
+    }
+
+    drawChart();
+
+    document.getElementById("resetAnalytics").addEventListener("click", () => {
+      localStorage.removeItem("lessonViews");
+      localStorage.removeItem("quizAttempts");
+      localStorage.removeItem("quizPasses");
+      localStorage.removeItem("phishingFails");
+      location.reload();
+    });
+  </script>
+</body>
+</html>
