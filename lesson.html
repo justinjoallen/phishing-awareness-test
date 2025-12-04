@@ -13,14 +13,29 @@
       By learning to recognize the signs, you can protect yourself and your peers.
     </p>
 
+    <!-- Progress tracker -->
+    <h2>Progress</h2>
+    <div class="progress-container">
+      <div id="progress-bar" class="progress-bar">0%</div>
+    </div>
+
     <h2>Key Red Flags</h2>
-    <ul class="list">
-      <li><strong>Too good to be true:</strong> Unrealistic pay or benefits with little effort required.</li>
-      <li><strong>Vague descriptions:</strong> No clear responsibilities or qualifications listed.</li>
-      <li><strong>Off‑platform links:</strong> Requests to apply outside of Handshake or official channels.</li>
-      <li><strong>Urgency tactics:</strong> “Apply immediately” or “limited spots” pressure language.</li>
-      <li><strong>Weak online presence:</strong> Employer lacks a verified website or contact information.</li>
-    </ul>
+
+    <!-- Accordion style red flags -->
+    <div class="accordion">⚠️ Too good to be true</div>
+    <div class="panel">Unrealistic pay or benefits with little effort required.</div>
+
+    <div class="accordion">⚠️ Vague descriptions</div>
+    <div class="panel">No clear responsibilities or qualifications listed.</div>
+
+    <div class="accordion">⚠️ Off‑platform links</div>
+    <div class="panel">Requests to apply outside of Handshake or official channels.</div>
+
+    <div class="accordion">⚠️ Urgency tactics</div>
+    <div class="panel">“Apply immediately” or “limited spots” pressure language.</div>
+
+    <div class="accordion">⚠️ Weak online presence</div>
+    <div class="panel">Employer lacks a verified website or contact information.</div>
 
     <h2>Why It Matters</h2>
     <p>
@@ -30,9 +45,47 @@
     </p>
 
     <div class="actions">
-      <a class="btn primary" href="quiz.html">Proceed to Quiz</a>
+      <a id="quiz-btn" class="btn primary disabled" href="quiz.html">Proceed to Quiz</a>
       <a class="btn" href="faq.html">📄 FAQ Website</a>
     </div>
   </main>
+
+  <script>
+    // Accordion interactivity + progress tracking
+    const acc = document.getElementsByClassName("accordion");
+    const progressBar = document.getElementById("progress-bar");
+    const quizBtn = document.getElementById("quiz-btn");
+    let openedFlags = new Set();
+
+    for (let i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        const panel = this.nextElementSibling;
+        const isOpen = panel.style.display === "block";
+        panel.style.display = isOpen ? "none" : "block";
+
+        // Track opened flags
+        if (!isOpen) {
+          openedFlags.add(i);
+        } else {
+          openedFlags.delete(i);
+        }
+
+        // Update progress bar
+        const total = acc.length;
+        const progress = Math.round((openedFlags.size / total) * 100);
+        progressBar.style.width = progress + "%";
+        progressBar.textContent = progress + "%";
+
+        // Unlock quiz button at 100%
+        if (progress === 100) {
+          quizBtn.classList.remove("disabled");
+        } else {
+          quizBtn.classList.add("disabled");
+        }
+      });
+    }
+  </script>
 </body>
 </html>
+
