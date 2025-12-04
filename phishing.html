@@ -6,22 +6,57 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <header class="header">
+    <img src="Miami-University-Logo.png" 
+         alt="Miami University Logo" class="logo" />
+    <h1 class="site-title">Simulated Phishing Feedback</h1>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="lesson.html">Lesson</a>
+      <a href="quiz.html">Quiz</a>
+      <a href="phishing.html">Simulation</a>
+      <a href="admin.html">Admin</a>
+      <a href="faq.html">FAQ</a>
+    </nav>
+  </header>
+
   <main class="card">
     <h1>⚠️ You clicked a simulated scam link</h1>
-    <p>This was only a test, but here’s what you missed:</p>
-    <ul class="list">
-      <li>Sender domain was not Miami or Handshake</li>
-      <li>Job description was vague and “too good to be true”</li>
-      <li>You were asked to apply off‑platform</li>
-    </ul>
+    <p class="intro">
+      Don’t worry — this was only a test created by Miami University to help you spot scams. 
+      Here’s what you missed in the email:
+    </p>
+
+    <div class="progress-container">
+      <div id="progress-bar" class="progress-bar" style="width:100%;">Phishing Test</div>
+    </div>
+
+    <h2>Red flags you overlooked</h2>
+    <div class="accordion">Sender domain was not Miami or Handshake</div>
+    <div class="panel">Always check that emails come from official @miamioh.edu or Handshake domains.</div>
+
+    <div class="accordion">Job description was vague and “too good to be true”</div>
+    <div class="panel">Scammers often promise high pay with little effort. Real postings list clear responsibilities.</div>
+
+    <div class="accordion">You were asked to apply off‑platform</div>
+    <div class="panel">Handshake is the official application channel. Off‑platform links are a major red flag.</div>
+    <div class="callout">
+      <strong>Note:</strong> This was a safe simulation. No personal data was collected. 
+      The goal is to strengthen your scam‑spotting skills.
+    </div>
 
     <h2>Next steps</h2>
     <div class="actions">
-      <a class="btn primary" href="index.html">🏠 Training Home</a>
       <a class="btn primary" href="lesson.html">📘 Review Lesson</a>
       <a class="btn primary" href="quiz.html">📝 Take Quiz</a>
-      <a class="btn primary" href="faq.html">📄 FAQ Website</a>
+      <a class="btn" href="index.html">🏠 Home</a>
     </div>
   </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Miami University • Career Services & IT Security</p>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
 </html>
